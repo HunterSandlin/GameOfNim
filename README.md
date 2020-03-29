@@ -6,3 +6,5 @@ A random amount of "marbles" (represented by "o"s)
 are generated. Then the player and computer take
 turns removing 1-3 marbles. Whoever takes the last
 marble wins.
+
+NOTE: not currently finished
