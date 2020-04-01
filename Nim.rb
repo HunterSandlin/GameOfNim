@@ -1,4 +1,6 @@
 $stdout.sync = true
+$turn = 0
+$playing = true
 puts "Welcome to the game of Nim!\n" +
 	"------------------------------------\n" +
 	"This is a famous game developted by mathatician\n" +
@@ -24,58 +26,69 @@ def play
 	puts "-NEW GAME-" +
 		"------------------------------------\n\n"
 	marbles_left = rand(6..15)
-	puts turn
 	#0 is copmuter's turn, 1 is player's turn
-	puts turn == 0 ?  "The computer won the coin toss, it will go first": 
+	puts $turn == 0 ?  "The computer won the coin toss, it will go first": 
 		"You won the coin toss, you will go first"
-
-	while marbles_left > 1
-		if turn == 0
+	$turn = rand(0..1)
+	while $playing == true
+		if $turn == 0
 			marbles_left = computerTurn(marbles_left)
-		elsif turn == 1
+		elsif $turn == 1
 			marbles_left = playerTurn(marbles_left)
-		else
-			restart
+		else 
+			puts "\n\n\n##############################"
+				"Something went horribly wrong!" +
+				"The game has ended. You probably" +
+				"would have won anyway."
+			restart()
+		end
+		if marbles_left <= 0
+			puts "\n---No marbles remaining:---\n\n\n"
+			puts $turn == 1 ?  "\tThe computer won.": "\tYou won!!"
+			restart()
 		end
 	end
 
 end
 
 def playerTurn(marbles)
-	puts "\nMarbles left #{" o"*marbles}\n\n"
+	puts "\nMarbles left (#{marbles}) #{" o"*marbles}\n\n"
 	puts "How many would you like to take (1, 2, or 3)? "
 	input_take = gets.chomp.to_i
-	puts "You took #{input_take} marble(s)"
-	if marbles < 1
-		put "\n---No marbles remaining: You win!!---\n\n\n"
-		return -1
-	end
+	puts "You took #{input_take} marble(s)\n\n"
+	$turn = 0
 	return marbles - input_take
 end
 
 
 def computerTurn(marbles)
-	puts "\nMarbles left #{" o"*marbles}\n\n"
-	
-	#marbles = % 4 == 0 ? take 
-	#finish math
-
-	take = gets.chomp.to_i
-	puts "The computer took #{take} marble(s)"
-	if marbles < 1
-		put "\n---No marbles remaining: The computer wins---\n\n\n"
-		return -1
-	end
+	puts "\nMarbles left (#{marbles}) #{" o"*marbles}\n\n"
+	if marbles % 4 == 0
+		take = 1
+	else 
+		take = marbles % 4
+	end 
+	puts "The computer took #{take} marble(s)\n\n"
+	$turn = 1
 	return marbles - take
 end
 
 
 def restart
-	#TODO: fill in restart. Ask for restart then act 
+	puts "\n\n\n\n\n\n------------------------------------\n" + 
+	"Would you like to play agian? (yes/no)" 
+	restart_input = gets.chomp.downcase
+	if restart_input == "yes" or restart_input == "y"
+		play()
+	elsif restart_input == "no" or restart_input == "n"
+		puts "Thanks for playing!" +
+		"------------------------------------\n"
+		$playing = false
+	end
 end  
 
 
 
 
 
-playerTurn(5)
+play()
