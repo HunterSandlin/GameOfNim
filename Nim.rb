@@ -18,12 +18,13 @@ puts "EXAMPLE: \n" +
 	"Player one taked 3 marbles.\n\n" +
 	"Marbles remaining: o o \n" +
 	"Player two takes 2 marbles \n\n" +
-	"No marbles remaining: Player 2 wins!!\n\n\n\n"
-
-
-
+	"No marbles remaining: Player 2 wins!!\n\n\n"
+#game started with 0 marbles once, how??
 def play
-	puts "-NEW GAME-" +
+	puts "Press 'Enter' or 'Return' to continue.."
+	gets
+	puts "\n\n\n\n"
+	puts "-NEW GAME-"
 		"------------------------------------\n\n"
 	marbles_left = rand(6..15)
 	#0 is copmuter's turn, 1 is player's turn
@@ -50,7 +51,7 @@ def play
 	end
 
 end
-
+#TODO: add time to slow down the output and try/catch the input
 def playerTurn(marbles)
 	puts "\nMarbles left (#{marbles}) #{" o"*marbles}\n\n"
 	puts "How many would you like to take (1, 2, or 3)? "
@@ -59,8 +60,7 @@ def playerTurn(marbles)
 	$turn = 0
 	return marbles - input_take
 end
-
-
+#TODO: add time to slow down the out put
 def computerTurn(marbles)
 	puts "\nMarbles left (#{marbles}) #{" o"*marbles}\n\n"
 	if marbles % 4 == 0
@@ -90,5 +90,5 @@ end
 
 
 
-
+#make a main method? Is that a thing in ruby?
 play()
