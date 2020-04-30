@@ -5,14 +5,11 @@ puts "Welcome to the game of Nim!\n" +
 	"------------------------------------\n" +
 	"This is a famous game developted by mathatician\n" +
 	"You will be playing a completely fair game.\n\n\n"
-
-
 puts "RULES: \n" +
 	"There will be a random amount of marbles represented by an 'o'\n" +
 	"You and the copmuter will take turns deciding how many marbles\n" +
 	"you will take away; 3, 2, or 1. You have to take at least one.\n" +
 	"The winner is whoever takes the last marble.\n\n\n"  
-
 puts "EXAMPLE: \n" +
 	"Marbles remaining: o o o o o \n" +
 	"Player one taked 3 marbles.\n\n" +
